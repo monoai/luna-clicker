@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://5ap0mxfxsrix"]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource type="Texture2D" uid="uid://cx3nyx57emj8p" path="res://assets/sprites/luna.png" id="1_nh3hf"]
+[ext_resource path="res://assets/sprites/luna.png" type="Texture" id=1]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Luna" type="Sprite2D" parent="."]
-position = Vector2(542, 269.721)
-scale = Vector2(0.260271, 0.260271)
-texture = ExtResource("1_nh3hf")
+[node name="Luna" type="Sprite" parent="."]
+position = Vector2( 532, 251.816 )
+scale = Vector2( 0.395191, 0.395191 )
+texture = ExtResource( 1 )

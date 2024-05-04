@@ -1,13 +1,13 @@
 name: "Publish to GitHub Pages"
 
 env:
-  GODOT_VERSION: 4.2.2
+  GODOT_VERSION: 3.5.3
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - godot
+      - godot3
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       contents: write
 
     container:
-      image: barichello/godot-ci:4.2.2
+      image: barichello/godot-ci:3.5.3
 
     steps:
       - name: Checkout
