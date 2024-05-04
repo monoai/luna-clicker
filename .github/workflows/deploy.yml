@@ -30,7 +30,10 @@ jobs:
         run: mkdir -v -p build
 
       - name: Build
-        run: godot -v --export "HTML5" ../build/index.html
+        run: |
+          godot -v --export "HTML5" ../build/index.html
+          echo "$PWD"
+          ls
 
       - name: Add coi-service-worker
         run: |
