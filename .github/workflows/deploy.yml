@@ -31,9 +31,9 @@ jobs:
 
       - name: Build
         run: |
-          godot -v --export "HTML5" ../build/index.html
           echo "$PWD"
           ls
+          godot -v --export "HTML5" ../build/index.html
 
       - name: Add coi-service-worker
         run: |
