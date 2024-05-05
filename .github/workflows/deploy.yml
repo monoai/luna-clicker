@@ -16,6 +16,6 @@ jobs:
       - name: Add coi-service-worker
         run: |
           git clone https://github.com/gzuidhof/coi-serviceworker.git
-          mv coi-serviceworker/coi-serviceworker.js build/coi-serviceworker.js
-          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/index.html
+          mv coi-serviceworker/coi-serviceworker.js ./coi-serviceworker.js
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' ./index.html
 
