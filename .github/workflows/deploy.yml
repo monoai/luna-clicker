@@ -1,0 +1,21 @@
+name: "Add coi-service-worker"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - godot3
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Add coi-service-worker
+        run: |
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/coi-serviceworker.js
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/index.html
+

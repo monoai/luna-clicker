@@ -6,6 +6,6 @@
 position = Vector2( 1, 0 )
 
 [node name="Luna" type="Sprite" parent="."]
-position = Vector2( 532, 251.816 )
+position = Vector2( 949, 531 )
 scale = Vector2( 0.395191, 0.395191 )
 texture = ExtResource( 1 )
