@@ -6,3 +6,8 @@
 *.translation
 export_presets.cfg
 .mono/
+
+# Specific ignores
+src/.gitignore
+src/.gitattributes
+src/.git
