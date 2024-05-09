@@ -100,10 +100,12 @@ func updateLabels():
 	$PPSCounter.text = "per second: " + str(pps)
 
 func storyCheck():
-	if(pokes < 50):
+	if(pokesTotal < 50):
 		emit_signal("update_story", "Just a normal day in the Candy Kingdom")
-	elif(pokes < 100):
+	elif(pokesTotal < 500):
 		emit_signal("update_story", "The Princess is starting to wonder why you're poking her")
+	elif(pokesTotal < 1000):
+		emit_signal("update_story", "The Princess is starting to worry... why are you still doing this?")
 
 func _on_Luna_clicked():
 	Earn(1)
