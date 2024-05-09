@@ -70,6 +70,7 @@ margin_bottom = 164.0
 rect_min_size = Vector2( 0, 100 )
 hint_tooltip = "test"
 script = ExtResource( 6 )
+basePrice = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ToolsPanel/VBoxContainer/AutoPoke"]
 margin_right = 386.0
@@ -116,6 +117,7 @@ margin_right = 386.0
 margin_bottom = 274.0
 rect_min_size = Vector2( 0, 100 )
 script = ExtResource( 6 )
+basePrice = 200
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ToolsPanel/VBoxContainer/AhogeToucher"]
 margin_right = 386.0
