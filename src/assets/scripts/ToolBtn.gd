@@ -13,8 +13,6 @@ func _ready():
 	var _err = self.connect("pressed", self, "_on_Button_pressed")
 	if(_err):
 		push_error("[ERROR] - Button " + self.name + " not connected to a method properly.")
-	# this assumes that the save will properly give the amount for each tool
-	recalculatePrice()
 	pass
 
 func updateLabels():

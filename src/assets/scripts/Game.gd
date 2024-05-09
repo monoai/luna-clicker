@@ -63,6 +63,8 @@ func loadGame(file):
 	pps = file.get_var()
 	for toolObj in tools.values():
 		toolObj.amount = file.get_var()
+		toolObj.price = toolObj.recalculatePrice()
+		toolObj.updateLabels()
 	file.close()
 
 func deleteSave():
