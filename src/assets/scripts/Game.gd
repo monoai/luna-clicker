@@ -2,7 +2,7 @@ extends Control
 
 # poke counters
 var pokes = 0
-var pokesTotal : int = 0
+var pokesTotal = 0
 var pps : float = 0.0
 
 # Additional variables
