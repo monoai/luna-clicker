@@ -98,6 +98,7 @@ func recalculatePPS():
 func updateLabels():
 	$PokeCounter.text = "Poke: " + str(int(pokes))
 	$PPSCounter.text = "per second: " + str(pps)
+	$TotalPokeCounter.text = "Total Pokes: " + str(pokesTotal)
 
 func storyCheck():
 	if(pokesTotal < 50):
@@ -106,7 +107,8 @@ func storyCheck():
 		emit_signal("update_story", "The Princess is starting to wonder why you're poking her")
 	elif(pokesTotal < 1000):
 		emit_signal("update_story", "The Princess is starting to worry... why are you still doing this?")
-
+	else:
+		emit_signal("update_story", "You poked too much, the Princess is angry. Someone's going to the Candy Dungeons...")
 func _on_Luna_clicked():
 	Earn(1)
 	updateLabels()
