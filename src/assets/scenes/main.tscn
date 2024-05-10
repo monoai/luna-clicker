@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/scripts/Game.gd" type="Script" id=3]
 [ext_resource path="res://assets/fonts/dynamic/btnfonts.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/scripts/Story.gd" type="Script" id=5]
-[ext_resource path="res://assets/scripts/UI/OptionsBtn.gd" type="Script" id=7]
+[ext_resource path="res://assets/scripts/UI/UIBtns.gd" type="Script" id=7]
 [ext_resource path="res://assets/scripts/UI/OptionsMenu.gd" type="Script" id=8]
 [ext_resource path="res://assets/objects/UpgBtn.tscn" type="PackedScene" id=9]
 
@@ -59,43 +59,63 @@ script = ExtResource( 3 )
 [node name="Ticks" type="Timer" parent="."]
 autostart = true
 
-[node name="ToolsPanel" type="PanelContainer" parent="."]
+[node name="ToolsPanel" type="Panel" parent="."]
+visible = false
 anchor_bottom = 1.0
 margin_right = 681.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ToolsPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ToolsPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 674.0
 margin_bottom = 1073.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ToolsPanel/ScrollContainer"]
+margin_right = 667.0
+margin_bottom = 1066.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="Header" type="Label" parent="ToolsPanel/VBoxContainer"]
+[node name="Header" type="Label" parent="ToolsPanel/ScrollContainer/VBoxContainer"]
 margin_right = 667.0
 margin_bottom = 54.0
 rect_pivot_offset = Vector2( 790.5, 149 )
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 8 )
 text = "Store"
 align = 1
 
-[node name="AutoPoke" parent="ToolsPanel/VBoxContainer" instance=ExtResource( 9 )]
+[node name="AutoPoke" parent="ToolsPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
 margin_top = 64.0
 margin_bottom = 264.0
 toolName = "Auto Poke"
 toolDesc = "Auto pokes Luna's cheeks every 5 seconds"
 
-[node name="AhogeToucher" parent="ToolsPanel/VBoxContainer" instance=ExtResource( 9 )]
+[node name="AhogeToucher" parent="ToolsPanel/ScrollContainer/VBoxContainer" instance=ExtResource( 9 )]
 margin_top = 274.0
 margin_bottom = 474.0
 toolName = "Ahoge Toucher"
 toolDesc = "Automatic ahoge toucher for your ahoge touching needs"
 basePrice = 200
 
-[node name="Name" parent="ToolsPanel/VBoxContainer/AhogeToucher/PanelContainer/HBoxContainer/VBoxContainer" index="0"]
+[node name="Name" parent="ToolsPanel/ScrollContainer/VBoxContainer/AhogeToucher/PanelContainer/HBoxContainer/VBoxContainer" index="0"]
 text = "Ahoge Toucher"
 
-[node name="Price" parent="ToolsPanel/VBoxContainer/AhogeToucher/PanelContainer/HBoxContainer/VBoxContainer" index="1"]
+[node name="Price" parent="ToolsPanel/ScrollContainer/VBoxContainer/AhogeToucher/PanelContainer/HBoxContainer/VBoxContainer" index="1"]
 text = "200 Pokes"
+
+[node name="CloseStoreBtn" type="Button" parent="ToolsPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -219.5
+margin_top = -168.0
+margin_right = 219.5
+margin_bottom = -48.0
+custom_fonts/font = ExtResource( 4 )
+text = "CLOSE STORE"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5
@@ -200,6 +220,17 @@ valign = 1
 autowrap = true
 script = ExtResource( 5 )
 
+[node name="StoreBtn" type="Button" parent="."]
+show_behind_parent = true
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 184.0
+rect_pivot_offset = Vector2( -3303, 293 )
+custom_fonts/font = SubResource( 13 )
+text = "Store"
+script = ExtResource( 7 )
+
 [node name="OptionsBtn" type="Button" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -207,6 +238,7 @@ margin_left = -197.0
 margin_top = 20.0
 margin_right = -29.0
 margin_bottom = 188.0
+rect_pivot_offset = Vector2( -3303, 293 )
 custom_fonts/font = SubResource( 13 )
 text = "Options"
 script = ExtResource( 7 )
@@ -365,10 +397,12 @@ custom_fonts/font = ExtResource( 4 )
 text = "CLOSE OPTIONS"
 
 [connection signal="timeout" from="Ticks" to="." method="_on_Ticks_timeout"]
+[connection signal="pressed" from="ToolsPanel/CloseStoreBtn" to="StoreBtn" method="_on_CloseStoreBtn_pressed"]
 [connection signal="clicked" from="CenterContainer/Luna" to="." method="_on_Luna_clicked"]
+[connection signal="pressed" from="StoreBtn" to="StoreBtn" method="_on_StoreBtn_pressed"]
 [connection signal="pressed" from="OptionsBtn" to="OptionsBtn" method="_on_OptionsBtn_pressed"]
 [connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer/Save" to="OptionsMenu" method="_on_Save_pressed"]
 [connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer3/DeleteSave" to="OptionsMenu" method="_on_DeleteSave_pressed"]
 [connection signal="pressed" from="OptionsMenu/CloseOptionsBtn" to="OptionsMenu" method="_on_CloseOptionsBtn_pressed"]
 
-[editable path="ToolsPanel/VBoxContainer/AhogeToucher"]
+[editable path="ToolsPanel/ScrollContainer/VBoxContainer/AhogeToucher"]

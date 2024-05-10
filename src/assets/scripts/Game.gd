@@ -17,8 +17,8 @@ signal update_story(story)
 
 # Tools
 onready var tools = {
-	"AutoPoke" : $ToolsPanel/VBoxContainer/AutoPoke,
-	"AhogeToucher" : $ToolsPanel/VBoxContainer/AhogeToucher
+	"AutoPoke" : $ToolsPanel/ScrollContainer/VBoxContainer/AutoPoke,
+	"AhogeToucher" : $ToolsPanel/ScrollContainer/VBoxContainer/AhogeToucher
 }
 
 # Saving
