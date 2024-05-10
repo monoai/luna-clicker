@@ -9,6 +9,7 @@ var pps : float = 0.0
 var pokeTime = 5.0
 var priceIncrease = 1.15
 var ticks = 0
+var gameVersion = "0.3.0"
 
 # Signals
 signal update_story(story)
@@ -21,6 +22,7 @@ onready var tools = {
 
 # Saving
 var save_file = "user://save.knight"
+onready var versionTxt = $Version
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +37,8 @@ func _ready():
 		file.close()
 		saveGame()
 	
+	checkVersion()
+	
 	main()
 
 func setupSignals():
@@ -43,6 +47,23 @@ func setupSignals():
 		$Story.text = "[ERROR] - Story not connected to game"
 	err = $OptionsMenu.connect("manual_save", self, "saveGame")
 	err = $OptionsMenu.connect("delete_save", self, "deleteSave")
+
+func checkVersion():
+	var file = File.new()
+	file.open("res://version.tres", File.READ)
+	if file.file_exists("res://version.tres"):
+		var res = load("res://version.tres")
+		print(res.version)
+		print(gameVersion)
+		if(res.version == gameVersion):
+			versionTxt.text = "0.3.0"
+		else:
+			versionTxt.text = "New Version of the game available!"
+	else:
+		print("[ERROR] - File does not exist...")
+		versionTxt.text = "New Version of the game available!"
+	file.close()
+	
 
 func saveGame():
 	print("saving game")
