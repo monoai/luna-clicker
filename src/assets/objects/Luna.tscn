@@ -92,18 +92,18 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 160, 160 )
+extents = Vector2( 239, 240 )
 
 [node name="Luna" type="Area2D"]
-position = Vector2( 960, 400 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 17 )
-frame = 9
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

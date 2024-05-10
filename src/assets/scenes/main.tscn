@@ -1,13 +1,13 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/objects/Luna.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/sprites/luna.png" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/dynamic/mainfont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/scripts/Game.gd" type="Script" id=3]
-[ext_resource path="res://assets/fonts/VarelaRound-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/fonts/dynamic/btnfonts.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/scripts/Story.gd" type="Script" id=5]
-[ext_resource path="res://assets/scripts/ToolBtn.gd" type="Script" id=6]
 [ext_resource path="res://assets/scripts/UI/OptionsBtn.gd" type="Script" id=7]
 [ext_resource path="res://assets/scripts/UI/OptionsMenu.gd" type="Script" id=8]
+[ext_resource path="res://assets/objects/UpgBtn.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/fonts/VarelaRound-Regular.ttf"
@@ -16,20 +16,12 @@ font_path = "res://assets/fonts/VarelaRound-Regular.ttf"
 size = 44
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 48
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 32
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 24
-font_data = ExtResource( 4 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 111
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 59
 font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -44,12 +36,12 @@ font_data = SubResource( 1 )
 size = 34
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 108
+[sub_resource type="DynamicFont" id=13]
+size = 38
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=11]
-size = 84
+[sub_resource type="DynamicFont" id=10]
+size = 108
 font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFont" id=12]
@@ -86,100 +78,24 @@ custom_fonts/font = SubResource( 8 )
 text = "Store"
 align = 1
 
-[node name="AutoPoke" type="Button" parent="ToolsPanel/VBoxContainer"]
+[node name="AutoPoke" parent="ToolsPanel/VBoxContainer" instance=ExtResource( 9 )]
 margin_top = 64.0
-margin_right = 667.0
 margin_bottom = 264.0
-rect_min_size = Vector2( 0, 200 )
-hint_tooltip = "test"
-script = ExtResource( 6 )
-basePrice = 50
+toolName = "Auto Poke"
+toolDesc = "Auto pokes Luna's cheeks every 5 seconds"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ToolsPanel/VBoxContainer/AutoPoke"]
-margin_right = 386.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 667, 200 )
-
-[node name="TextureRect" type="TextureRect" parent="ToolsPanel/VBoxContainer/AutoPoke/HBoxContainer"]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 200, 0 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ToolsPanel/VBoxContainer/AutoPoke/HBoxContainer"]
-margin_left = 204.0
-margin_right = 667.0
-margin_bottom = 200.0
-size_flags_horizontal = 3
-
-[node name="Name" type="Label" parent="ToolsPanel/VBoxContainer/AutoPoke/HBoxContainer/VBoxContainer"]
-margin_right = 463.0
-margin_bottom = 59.0
-custom_fonts/font = SubResource( 6 )
-text = "Auto Poke"
-
-[node name="Price" type="Label" parent="ToolsPanel/VBoxContainer/AutoPoke/HBoxContainer/VBoxContainer"]
-margin_top = 63.0
-margin_right = 463.0
-margin_bottom = 103.0
-custom_fonts/font = SubResource( 5 )
-text = "50 Pokes"
-
-[node name="Description" type="Label" parent="ToolsPanel/VBoxContainer/AutoPoke/HBoxContainer/VBoxContainer"]
-margin_top = 107.0
-margin_right = 463.0
-margin_bottom = 170.0
-custom_fonts/font = SubResource( 7 )
-text = "Auto pokes Luna's cheeks every 5 seconds"
-autowrap = true
-
-[node name="AhogeToucher" type="Button" parent="ToolsPanel/VBoxContainer"]
+[node name="AhogeToucher" parent="ToolsPanel/VBoxContainer" instance=ExtResource( 9 )]
 margin_top = 274.0
-margin_right = 667.0
 margin_bottom = 474.0
-rect_min_size = Vector2( 0, 200 )
-script = ExtResource( 6 )
+toolName = "Ahoge Toucher"
+toolDesc = "Automatic ahoge toucher for your ahoge touching needs"
 basePrice = 200
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ToolsPanel/VBoxContainer/AhogeToucher"]
-margin_right = 386.0
-margin_bottom = 150.0
-rect_min_size = Vector2( 667, 200 )
-
-[node name="TextureRect" type="TextureRect" parent="ToolsPanel/VBoxContainer/AhogeToucher/HBoxContainer"]
-margin_right = 200.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 200, 0 )
-texture = ExtResource( 2 )
-expand = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ToolsPanel/VBoxContainer/AhogeToucher/HBoxContainer"]
-margin_left = 204.0
-margin_right = 667.0
-margin_bottom = 200.0
-size_flags_horizontal = 3
-
-[node name="Name" type="Label" parent="ToolsPanel/VBoxContainer/AhogeToucher/HBoxContainer/VBoxContainer"]
-margin_right = 463.0
-margin_bottom = 59.0
-custom_fonts/font = SubResource( 6 )
+[node name="Name" parent="ToolsPanel/VBoxContainer/AhogeToucher/PanelContainer/HBoxContainer/VBoxContainer" index="0"]
 text = "Ahoge Toucher"
 
-[node name="Price" type="Label" parent="ToolsPanel/VBoxContainer/AhogeToucher/HBoxContainer/VBoxContainer"]
-margin_top = 63.0
-margin_right = 463.0
-margin_bottom = 103.0
-custom_fonts/font = SubResource( 5 )
+[node name="Price" parent="ToolsPanel/VBoxContainer/AhogeToucher/PanelContainer/HBoxContainer/VBoxContainer" index="1"]
 text = "200 Pokes"
-
-[node name="Description" type="Label" parent="ToolsPanel/VBoxContainer/AhogeToucher/HBoxContainer/VBoxContainer"]
-margin_top = 107.0
-margin_right = 463.0
-margin_bottom = 170.0
-custom_fonts/font = SubResource( 7 )
-text = "A dedicated Ahoge Toucher for your Ahoge Touching needs"
-autowrap = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5
@@ -198,28 +114,43 @@ __meta__ = {
 }
 
 [node name="Luna" parent="CenterContainer" instance=ExtResource( 1 )]
+position = Vector2( 960, 400 )
 
 [node name="Header" type="Label" parent="."]
 show_behind_parent = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -517.5
-margin_top = 74.0
+margin_top = 2.0
 margin_right = 517.5
-margin_bottom = 223.0
+margin_bottom = 151.0
 rect_pivot_offset = Vector2( 790.5, 149 )
 custom_fonts/font = SubResource( 2 )
 text = "Secret Luna Project"
+
+[node name="Version" type="Label" parent="."]
+show_behind_parent = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -974.0
+margin_top = -72.0
+rect_pivot_offset = Vector2( 790.5, 149 )
+custom_fonts/font = SubResource( 14 )
+text = "0.0.0"
+align = 2
+valign = 1
 
 [node name="PokeCounter" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -517.5
-margin_top = -237.0
-margin_right = 517.5
-margin_bottom = -88.0
+margin_left = -517.0
+margin_top = -214.0
+margin_right = 518.0
+margin_bottom = -80.0
 custom_fonts/font = SubResource( 3 )
 text = "Pokes: 0"
 align = 1
@@ -230,9 +161,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -517.5
-margin_top = -149.0
-margin_right = 517.5
+margin_left = -517.0
+margin_top = -109.0
+margin_right = 518.0
+margin_bottom = -35.0
 custom_fonts/font = SubResource( 4 )
 text = "per second: 0"
 align = 1
@@ -243,13 +175,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -214.0
-margin_top = -149.0
-margin_right = 821.0
+margin_left = 326.0
+margin_top = -187.0
+margin_right = 945.0
+margin_bottom = -113.0
 custom_fonts/font = SubResource( 4 )
 text = "Total Pokes: 0"
-align = 2
 valign = 1
+autowrap = true
 
 [node name="Story" type="Label" parent="."]
 anchor_left = 0.5
@@ -257,9 +190,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -517.5
-margin_top = -469.0
+margin_top = -381.0
 margin_right = 517.5
-margin_bottom = -320.0
+margin_bottom = -232.0
 custom_fonts/font = SubResource( 9 )
 text = "[ERROR]"
 align = 1
@@ -274,6 +207,7 @@ margin_left = -197.0
 margin_top = 20.0
 margin_right = -29.0
 margin_bottom = 188.0
+custom_fonts/font = SubResource( 13 )
 text = "Options"
 script = ExtResource( 7 )
 
@@ -323,7 +257,7 @@ margin_bottom = 139.0
 margin_top = 143.0
 margin_right = 771.0
 margin_bottom = 246.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = ExtResource( 2 )
 text = "- Save -"
 align = 1
 valign = 1
@@ -346,6 +280,7 @@ margin_left = 171.0
 margin_right = 396.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 225, 0 )
+custom_fonts/font = ExtResource( 4 )
 text = "Save"
 
 [node name="Header2" type="Label" parent="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer"]
@@ -369,18 +304,20 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="ImportSave" type="Button" parent="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer2"]
-margin_left = 135.0
-margin_right = 360.0
+margin_left = 49.0
+margin_right = 361.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 225, 0 )
+custom_fonts/font = ExtResource( 4 )
 disabled = true
 text = "Import Save"
 
 [node name="ExportSave" type="Button" parent="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer2"]
-margin_left = 410.0
-margin_right = 635.0
+margin_left = 411.0
+margin_right = 721.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 225, 0 )
+custom_fonts/font = ExtResource( 4 )
 disabled = true
 text = "Export Save"
 
@@ -393,10 +330,11 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="DeleteSave" type="Button" parent="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer3"]
-margin_left = 273.0
-margin_right = 498.0
+margin_left = 234.0
+margin_right = 537.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 225, 0 )
+custom_fonts/font = ExtResource( 4 )
 text = "Delete Save"
 
 [node name="HSeparator2" type="HSeparator" parent="OptionsMenu/ScrollContainer/VBoxContainer"]
@@ -408,7 +346,7 @@ margin_bottom = 613.0
 margin_top = 617.0
 margin_right = 771.0
 margin_bottom = 720.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = ExtResource( 2 )
 text = "- Audio -"
 align = 1
 valign = 1
@@ -420,9 +358,10 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -385.5
-margin_top = -65.0
+margin_top = -94.0
 margin_right = 385.5
-margin_bottom = -13.0
+margin_bottom = -16.0
+custom_fonts/font = ExtResource( 4 )
 text = "CLOSE OPTIONS"
 
 [connection signal="timeout" from="Ticks" to="." method="_on_Ticks_timeout"]
@@ -431,3 +370,5 @@ text = "CLOSE OPTIONS"
 [connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer/Save" to="OptionsMenu" method="_on_Save_pressed"]
 [connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer3/DeleteSave" to="OptionsMenu" method="_on_DeleteSave_pressed"]
 [connection signal="pressed" from="OptionsMenu/CloseOptionsBtn" to="OptionsMenu" method="_on_CloseOptionsBtn_pressed"]
+
+[editable path="ToolsPanel/VBoxContainer/AhogeToucher"]
