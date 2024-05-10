@@ -3,7 +3,8 @@ extends Control
 # poke counters
 var pokes = 0
 var pokesTotal = 0
-var pps : float = 0.0
+var pps : float = 0.0 # Pokes per Second
+var ppc : float = 1.0 # Pokes per Click
 
 # Additional variables
 var pokeTime = 5.0
@@ -121,6 +122,13 @@ func updateLabels():
 	$PPSCounter.text = "per second: " + str(pps)
 	$TotalPokeCounter.text = "Total Pokes: " + str(pokesTotal)
 
+func clickEffects():
+	var click = load("res://assets/objects/pokeMsg.tscn")
+	var clickInstance = click.instance()
+	clickInstance.text = "+" + str(ppc)
+	clickInstance.rect_position = get_local_mouse_position()
+	add_child(clickInstance)
+
 func storyCheck():
 	if(pokesTotal < 50):
 		emit_signal("update_story", "Just a normal day in the Candy Kingdom")
@@ -130,9 +138,11 @@ func storyCheck():
 		emit_signal("update_story", "The Princess is starting to worry... why are you still doing this?")
 	else:
 		emit_signal("update_story", "You poked too much, the Princess is angry. Someone's going to the Candy Dungeons...")
+
 func _on_Luna_clicked():
-	Earn(1)
+	Earn(ppc)
 	updateLabels()
+	clickEffects()
 
 func Earn(amount):
 	pokes += amount

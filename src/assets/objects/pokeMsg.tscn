@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/dynamic/pokeMsg.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/scripts/UI/pokeMsg.gd" type="Script" id=2]
+
+[node name="pokeMsg" type="Label"]
+anchor_left = -0.016
+anchor_top = -0.029
+anchor_right = 0.016
+anchor_bottom = 0.03
+margin_left = -0.279999
+margin_top = 0.320002
+margin_right = 0.279999
+margin_bottom = -0.400002
+rect_pivot_offset = Vector2( 31, 31 )
+custom_fonts/font = ExtResource( 1 )
+text = "+1"
+script = ExtResource( 2 )
