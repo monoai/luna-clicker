@@ -136,6 +136,18 @@ func storyCheck():
 		emit_signal("update_story", "The Princess is starting to wonder why you're poking her")
 	elif(pokesTotal < 1000):
 		emit_signal("update_story", "The Princess is starting to worry... why are you still doing this?")
+	elif(pokesTotal < 10000):
+		emit_signal("update_story", "You hear mumbling around you. 'Can he actually do that!?' says the others...")
+	elif(pokesTotal < 100000):
+		emit_signal("update_story", "The other Luknights wants to join you as you see the Princess' face turn red from embarrassment")
+	elif(pokesTotal < 1000000):
+		emit_signal("update_story", "The Princess should be doing something right now, but you're still alive, maybe you can keep going?")
+	elif(pokesTotal < 10000000):
+		emit_signal("update_story", "You feel eternal bliss, you think that this is the best day of your life. Finally, freedom to poke cheeks...")
+	elif(pokesTotal < 100000000):
+		emit_signal("update_story", "The Princess seems to be annoyed a bit, or maybe it's just your imagination?")
+	elif(pokesTotal < 1000000000):
+		emit_signal("update_story", "No wait... it isn't your imagination, the Princess is slowly getting really REALLY annoyed...")
 	else:
 		emit_signal("update_story", "You poked too much, the Princess is angry. Someone's going to the Candy Dungeons...")
 
