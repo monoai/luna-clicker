@@ -57,7 +57,7 @@ func checkVersion():
 		print(res.version)
 		print(gameVersion)
 		if(res.version == gameVersion):
-			versionTxt.text = "0.3.0"
+			versionTxt.text = res.version
 		else:
 			versionTxt.text = "New Version of the game available!"
 	else:
