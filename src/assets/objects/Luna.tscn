@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/sprites/lunacrop-ezgif.com-gif-to-sprite-converter.png" type="Texture" id=1]
 [ext_resource path="res://assets/scripts/Luna.gd" type="Script" id=2]
+[ext_resource path="res://assets/objects/pokeHand.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -94,20 +95,39 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 239, 240 )
 
+[sub_resource type="Animation" id=19]
+resource_name = "clicked"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("pokeHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -360, 15 ), Vector2( -144, 15 ), Vector2( -360, 15 ) ]
+}
+
 [node name="Luna" type="Area2D"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 17 )
-frame = 3
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 18 )
+
+[node name="pokeHand" parent="." instance=ExtResource( 3 )]
+position = Vector2( -360, 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/clicked = SubResource( 19 )
 
 [connection signal="input_event" from="." to="." method="_on_Luna_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Luna_mouse_entered"]

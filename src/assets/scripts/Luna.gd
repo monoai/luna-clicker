@@ -1,9 +1,12 @@
 extends Area2D
 
 signal clicked
+onready var pokeHand = $pokeHand
+onready var animator = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pokeHand.hide()
 	pass # Replace with function body.
 
 
@@ -16,9 +19,12 @@ func _on_Luna_input_event(_viewport, event, _shape_idx):
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			# print("Touched!")
 			emit_signal("clicked")
+			animator.play("clicked")
 
 func _on_Luna_mouse_entered():
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	pokeHand.show()
 
 func _on_Luna_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	pokeHand.hide()

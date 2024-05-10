@@ -10,7 +10,7 @@ var ppc : float = 1.0 # Pokes per Click
 var pokeTime = 5.0
 var priceIncrease = 1.15
 var ticks = 0
-var gameVersion = "0.3.0"
+var gameVersion = "0.4.0"
 
 # Signals
 signal update_story(story)
