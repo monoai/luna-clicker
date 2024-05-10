@@ -21,12 +21,17 @@ onready var tools = {
 	"AhogeToucher" : $ToolsPanel/ScrollContainer/VBoxContainer/AhogeToucher
 }
 
+# Effects
+var pathand = load("res://assets/objects/patHand.tscn")
+var patHandArr : Array
+
 # Saving
 var save_file = "user://save.knight"
 onready var versionTxt = $Version
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	# signal connections
 	setupSignals()
 	
@@ -97,9 +102,6 @@ func deleteSave():
 	for toolObj in tools.values():
 		toolObj.reset()
 
-#func _process(delta):
-#	pass
-
 func _on_Ticks_timeout():
 	main()
 	ticks += 1
@@ -108,6 +110,7 @@ func main():
 	Earn(pps)
 	recalculatePPS()
 	updateLabels()
+	effects()
 	storyCheck()
 	if(ticks % 30 == 0):
 		saveGame()
@@ -116,6 +119,15 @@ func recalculatePPS():
 	pps = 0
 	pps += tools["AhogeToucher"].amount*(4.0/pokeTime)
 	pps += tools["AutoPoke"].amount*(1.0/pokeTime)
+
+func effects():
+	if(patHandArr.size() < tools["AhogeToucher"].amount):
+		while(patHandArr.size() != tools["AhogeToucher"].amount):
+			var patHand = pathand.instance()
+			$CenterContainer/Luna.add_child(patHand)
+			patHand.position = Vector2(rand_range(-184,184),-240)
+			patHandArr.append(patHand)
+			pass
 
 func updateLabels():
 	$PokeCounter.text = "Poke: " + str(int(pokes))
