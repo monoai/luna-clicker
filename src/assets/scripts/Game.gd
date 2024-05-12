@@ -14,6 +14,7 @@ var gameVersion = "0.4.0"
 
 # Signals
 signal update_story(story)
+signal read_completed
 
 # Tools
 onready var tools = {
@@ -28,6 +29,8 @@ var patHandArr : Array
 # Saving
 var save_file = "user://save.knight"
 onready var versionTxt = $Version
+var js_callback
+var js_interface
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,7 +40,8 @@ func _ready():
 	
 	# check if save exists
 	var file = File.new()
-	if file.file_exists(save_file):
+	var err = file.open(save_file, File.READ)
+	if err == OK:
 		loadGame(file)
 	else:
 		file.close()
@@ -53,6 +57,8 @@ func setupSignals():
 		$Story.text = "[ERROR] - Story not connected to game"
 	err = $OptionsMenu.connect("manual_save", self, "saveGame")
 	err = $OptionsMenu.connect("delete_save", self, "deleteSave")
+	err = $OptionsMenu.connect("import_save", self, "importSave")
+	err = $OptionsMenu.connect("export_save", self, "exportSave")
 
 func checkVersion():
 	var file = File.new()
@@ -84,7 +90,6 @@ func saveGame():
 
 func loadGame(file):
 	print("loading game")
-	file.open(save_file, File.READ)
 	pokes = file.get_var()
 	pokesTotal = file.get_var()
 	pps = file.get_var()
@@ -101,6 +106,80 @@ func deleteSave():
 	pps = 0.0
 	for toolObj in tools.values():
 		toolObj.reset()
+
+func exportSave():
+	var file = File.new()
+	var err = file.open(save_file, File.READ)
+	if(err):
+		printerr("[ERROR] Save file does not exist?!")
+		return
+	var buf = file.get_buffer(file.get_len())
+	JavaScript.download_buffer(buf, "save.knight")
+	file.close()
+	pass
+
+func load_handler(_args):
+	#print("TEEEEEEEEEESTTTTTTTTTTTT")
+	if(not _args[0] is JavaScriptObject):
+		print("Not an object")
+		return
+	else:
+		var fileData = JavaScript.eval("_HTML5FileExchange.result", true) # interface doesn't work as expected for some reason
+		print("Datatype: ")
+		print(typeof(fileData))
+		print(fileData)
+		var file = File.new()
+		var file_error = file.open(save_file, File.WRITE)
+		if(fileData):
+			file.store_buffer(fileData)
+			file.close()
+		
+		if file_error != OK:
+			print("An error occurred while trying to load the file.")
+			return
+		
+		var err = file.open(save_file, File.READ)
+		if err == OK:
+			loadGame(file)
+		main()
+		print("Save Imported")
+		
+
+func importSave():
+	var js_code = """
+		var _HTML5FileExchange = {};
+		_HTML5FileExchange.upload = function(gd_callback) {
+			var input = document.createElement('INPUT'); 
+			input.setAttribute("type", "file");
+			input.setAttribute("accept", ".knight");
+			input.click();
+			input.addEventListener('change', event => {
+				// console.log(event.target.files.length);
+				if (event.target.files.length == 0) { 
+					console.log("Returning as null");
+					gd_callback(null) 
+				}
+				var file = event.target.files[0];
+				const reader = new FileReader();
+				reader.readAsArrayBuffer(file);
+				reader.onload = (evt) => { // Since here's it's arrow function, "this" still refers to _HTML5FileExchange
+					if (evt.target.readyState == FileReader.DONE) {
+						this.result = evt.target.result;
+						console.log("Returning as something");
+						gd_callback(this.result); // It's hard to retrieve value from callback argument, so it's just for notification
+					}
+				}
+			  });
+		}
+	"""
+	JavaScript.eval(js_code, true)
+	
+	js_callback = JavaScript.create_callback(self, "load_handler")
+	js_interface = JavaScript.get_interface("_HTML5FileExchange")
+	
+	print("Importing save")
+	js_interface.upload(js_callback)
+	pass
 
 func _on_Ticks_timeout():
 	main()

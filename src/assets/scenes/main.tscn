@@ -341,7 +341,6 @@ margin_right = 361.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = ExtResource( 4 )
-disabled = true
 text = "Import Save"
 
 [node name="ExportSave" type="Button" parent="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer2"]
@@ -350,7 +349,6 @@ margin_right = 721.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = ExtResource( 4 )
-disabled = true
 text = "Export Save"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection"]
@@ -402,6 +400,8 @@ text = "CLOSE OPTIONS"
 [connection signal="pressed" from="StoreBtn" to="StoreBtn" method="_on_StoreBtn_pressed"]
 [connection signal="pressed" from="OptionsBtn" to="OptionsBtn" method="_on_OptionsBtn_pressed"]
 [connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer/Save" to="OptionsMenu" method="_on_Save_pressed"]
+[connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer2/ImportSave" to="OptionsMenu" method="_on_ImportSave_pressed"]
+[connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer2/ExportSave" to="OptionsMenu" method="_on_ExportSave_pressed"]
 [connection signal="pressed" from="OptionsMenu/ScrollContainer/VBoxContainer/SaveSection/HBoxContainer3/DeleteSave" to="OptionsMenu" method="_on_DeleteSave_pressed"]
 [connection signal="pressed" from="OptionsMenu/CloseOptionsBtn" to="OptionsMenu" method="_on_CloseOptionsBtn_pressed"]
 
